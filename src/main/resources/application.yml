@@ -1,0 +1,66 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${dermai.datasource.driver-class-name}
+      url: jdbc:mysql://${dermai.datasource.host}:${dermai.datasource.port}/${dermai.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${dermai.datasource.username}
+      password: ${dermai.datasource.password}
+  redis:
+    password: ${dermai.redis.password}
+    host: ${dermai.redis.host}
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 1
+    database: 0
+    port: 6379
+
+mybatis:
+  #mapper config file
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sky.entity
+  configuration:
+    #open camel case
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sky:
+        mapper: debug
+        service: info
+        controller: info
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss
+
+sky:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: itcast
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    # 设置用户端jwt
+    user-secret-key: itheima
+    user-ttl: 7200000
+    user-token-name: authentication
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}
+aliyun:
+  oss:
+    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+    region: cn-hangzhou
+    accessKeyId: LTAI5tRtzTwuvNdDWYdJQ8Pc
+    accessKeySecret: xwHsibt7dtPceRC2LvEH9atEDsIirx
+    roleArn: acs:ram::1966856465005689:role/image
+    bucketName: repo-shaobo
