@@ -1,8 +1,6 @@
 package com.dermai.framework.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -12,12 +10,10 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-import java.util.List;
-
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     /**
-     * 通过knife4j生成接口文档
-     * @return
+     * Generate Interface Documentation via knife4j
+     * @return docket
      */
     @Bean
     public Docket docket() {
@@ -36,7 +32,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     }
 
     /**
-     * 设置静态资源映射
+     * Setting static resource mapping
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
