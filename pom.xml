@@ -64,7 +64,7 @@
             <version>${druid}</version>
         </dependency>
 
-        <!-- 验证码 -->
+        <!-- Google Captcha Dependency -->
         <dependency>
             <groupId>pro.fessional</groupId>
             <artifactId>kaptcha</artifactId>
@@ -75,6 +75,12 @@
                     <groupId>javax.servlet</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- Redis Templete -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
     </dependencies>
