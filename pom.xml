@@ -16,6 +16,7 @@
         <druid>1.2.1</druid>
         <mybatis>2.2.0</mybatis>
         <kaptcha>2.3.3</kaptcha>
+        <hutool>5.8.16</hutool>
     </properties>
     <dependencies>
         <dependency>
@@ -81,6 +82,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- hutool -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool}</version>
         </dependency>
 
     </dependencies>
