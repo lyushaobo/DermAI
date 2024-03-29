@@ -11,6 +11,8 @@ import static com.google.code.kaptcha.Constants.*;
 
 /**
  * Captcha Config
+ *
+ * @author Shaobo
  */
 @Configuration
 public class CaptchaConfiguration {

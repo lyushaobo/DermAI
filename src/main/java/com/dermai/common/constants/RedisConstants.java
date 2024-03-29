@@ -1,5 +1,10 @@
 package com.dermai.common.constants;
 
+/**
+ * Redis Constants
+ *
+ * @author Shaobo
+ */
 public class RedisConstants {
 
     /**

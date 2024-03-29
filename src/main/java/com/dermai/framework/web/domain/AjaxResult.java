@@ -6,6 +6,11 @@ import java.util.Objects;
 
 import com.dermai.common.constants.HttpStatus;
 
+/**
+ * Ajax results
+ *
+ * @author Shaobo
+ */
 public class AjaxResult extends HashMap<String, Object> implements Serializable {
 
     private static final long serialVersionUID = 1L;

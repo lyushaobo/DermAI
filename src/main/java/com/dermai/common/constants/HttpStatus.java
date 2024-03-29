@@ -1,5 +1,10 @@
 package com.dermai.common.constants;
 
+/**
+ * Http Status Constants
+ *
+ * @author Shaobo
+ */
 public class HttpStatus {
     /**
      * Operation Success

@@ -19,6 +19,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Captcha Controller
+ *
+ * @author Shaobo
+ */
 @RestController
 @Api(tags = "Captcha Interface")
 public class CaptchaController {
