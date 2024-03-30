@@ -17,7 +17,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @author Shaobo
  */
 @Configuration
-public class WebMvcConfiguration extends WebMvcConfigurationSupport {
+public class Knight4jConfiguration {
     /**
      * Generate Interface Documentation via knife4j
      * @return docket
