@@ -17,6 +17,7 @@
         <mybatis>2.2.0</mybatis>
         <kaptcha>2.3.3</kaptcha>
         <hutool>5.8.16</hutool>
+        <fastjson>2.0.43</fastjson>
     </properties>
     <dependencies>
         <dependency>
@@ -89,6 +90,13 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool}</version>
+        </dependency>
+
+        <!-- fastJSON-->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson}</version>
         </dependency>
 
     </dependencies>
