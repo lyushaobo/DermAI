@@ -55,11 +55,11 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        // Setting the allowed request origin address 设置访问源地址
+        // Setting the allowed request origin address, e.g. loalhost 设置访问源地址
         config.addAllowedOriginPattern("*");
-        // Setting the allowed request origin header设置访问源请求头
+        // Setting the allowed request origin header, e.g. header1 设置访问源请求头
         config.addAllowedHeader("*");
-        // Seeting the allowed request methods 设置访问源请求方法
+        // Seeting the allowed request method, e.g. "PUT", "GET" 设置访问源请求方法
         config.addAllowedMethod("*");
         // validation 1800s
         config.setMaxAge(1800L);
