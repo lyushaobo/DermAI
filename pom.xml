@@ -18,6 +18,7 @@
         <kaptcha>2.3.3</kaptcha>
         <hutool>5.8.16</hutool>
         <fastjson>2.0.43</fastjson>
+        <jjwt>0.9.1</jjwt>
     </properties>
     <dependencies>
         <dependency>
@@ -97,6 +98,13 @@
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
             <version>${fastjson}</version>
+        </dependency>
+
+        <!-- jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt}</version>
         </dependency>
 
     </dependencies>
