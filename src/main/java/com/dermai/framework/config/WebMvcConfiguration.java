@@ -2,6 +2,9 @@ package com.dermai.framework.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -17,7 +20,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @author Shaobo
  */
 @Configuration
-public class Knight4jConfiguration extends WebMvcConfigurationSupport {
+public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     /**
      * Generate Interface Documentation via knife4j
      * @return docket
@@ -45,6 +48,26 @@ public class Knight4jConfiguration extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+    @Bean
+    public CorsFilter corsFilter()
+    {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        // Setting the allowed request origin address 设置访问源地址
+        config.addAllowedOriginPattern("*");
+        // Setting the allowed request origin header设置访问源请求头
+        config.addAllowedHeader("*");
+        // Seeting the allowed request methods 设置访问源请求方法
+        config.addAllowedMethod("*");
+        // validation 1800s
+        config.setMaxAge(1800L);
+        // Add mapped paths to intercept all requests
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        // return new CorsFilter
+        return new CorsFilter(source);
     }
 
 }
