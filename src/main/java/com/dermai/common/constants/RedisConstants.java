@@ -15,7 +15,7 @@ public class RedisConstants {
     /**
      * Captcha validity period (minutes)
      */
-    public static final Integer CAPTCHA_EXPIRATION = 2;
+    public static final Integer CAPTCHA_EXPIRATION = 200;
     /**
      * login user token
      */

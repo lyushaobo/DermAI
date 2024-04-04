@@ -25,7 +25,7 @@ spring:
 
 mybatis:
   #mapper config file
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:mybatis/**/*Mapper.xml
   type-aliases-package: com.dermai.project.**.domain
   configuration:
     #open camel case
