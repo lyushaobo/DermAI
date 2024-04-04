@@ -32,18 +32,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser user = userService.selectUserByUserName(username);
-        if (user == null)
-        {
+        if (user == null) {
             log.info("Login user: {} does not exist.", username);
             throw new ServiceException("user.not.exists");
-        }
-        else if (UserStatus.DELETED.getCode().equals(user.getDelFlag()))
-        {
+        } else if (UserStatus.DELETED.getCode().equals(user.getDelFlag())) {
             log.info("Login user：{} has been deleted.", username);
             throw new ServiceException("user.password.delete");
-        }
-        else if (UserStatus.DISABLE.getCode().equals(user.getStatus()))
-        {
+        } else if (UserStatus.DISABLE.getCode().equals(user.getStatus())) {
             log.info("Login user：{} has been disabled.", username);
             throw new ServiceException("user.blocked");
         }

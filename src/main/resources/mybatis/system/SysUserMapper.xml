@@ -65,7 +65,7 @@
         </set>
         where user_id = #{userId}
     </update>
-    <select id="selectUserByUserName" resultType="SysUser">
+    <select id="selectUserByUserName" resultMap="SysUserResult">
         <include refid="selectUserVo"/>
         where u.user_name = #{userName} and u.del_flag = '0'
     </select>
