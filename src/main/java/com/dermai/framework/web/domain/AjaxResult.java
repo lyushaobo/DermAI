@@ -67,6 +67,15 @@ public class AjaxResult extends HashMap<String, Object> implements Serializable 
     }
 
     /**
+     * return success data
+     *
+     * @return success
+     */
+    public static AjaxResult success(Object data) {
+        return AjaxResult.success("success", data);
+    }
+
+    /**
      * Return success msg
      *
      * @param msg return message
