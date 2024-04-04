@@ -39,6 +39,5 @@ public class SecurityUtils {
         } catch (Exception e) {
             throw new ServiceException("Get User Information Exception", HttpStatus.UNAUTHORIZED);
         }
-
     }
 }
