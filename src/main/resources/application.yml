@@ -26,7 +26,7 @@ spring:
 mybatis:
   #mapper config file
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.sky.entity
+  type-aliases-package: com.dermai.project.**.domain
   configuration:
     #open camel case
     map-underscore-to-camel-case: true
@@ -49,3 +49,8 @@ token:
   secret: abcdefghijklmnopqrstuvwxyz
   # Token expiration date (minutes)
   expireTime: 1440
+
+user:
+  password:
+    maxRetryCount: 5
+    lockTime: 10

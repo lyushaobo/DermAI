@@ -19,6 +19,7 @@
         <hutool>5.8.16</hutool>
         <fastjson>2.0.43</fastjson>
         <jjwt>0.9.1</jjwt>
+        <bitwalker>1.21</bitwalker>
     </properties>
     <dependencies>
         <dependency>
@@ -105,6 +106,13 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt}</version>
+        </dependency>
+
+        <!-- 解析客户端操作系统、浏览器等 -->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>${bitwalker}</version>
         </dependency>
 
     </dependencies>
