@@ -33,6 +33,11 @@ public class SecurityUtils {
         return passwordEncoder.matches(rawPassword, password);
     }
 
+    /**
+     * get login user
+     *
+     * @return LoginUser
+     */
     public static LoginUser getLoginUser() {
         try {
             return (LoginUser) getAuthentication().getPrincipal();
