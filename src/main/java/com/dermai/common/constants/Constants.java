@@ -21,4 +21,6 @@ public class Constants {
      * Token Prefix
      */
     public static final String TOKEN_PREFIX = "Bearer ";
+    public static final String[] JSON_WHITELIST_STR
+            = { "org.springframework", "com.dermai" };
 }
