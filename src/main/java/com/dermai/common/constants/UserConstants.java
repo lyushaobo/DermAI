@@ -21,6 +21,6 @@ public class UserConstants {
     /**
      * max length of username
      */
-    public static final int USERNAME_MAX_LENGTH = 2;
+    public static final int USERNAME_MAX_LENGTH = 20;
 
 }
