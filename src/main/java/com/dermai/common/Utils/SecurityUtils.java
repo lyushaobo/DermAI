@@ -1,5 +1,8 @@
 package com.dermai.common.Utils;
 
+import com.dermai.common.constants.HttpStatus;
+import com.dermai.common.exception.ServiceException;
+import com.dermai.framework.security.LoginUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,5 +31,14 @@ public class SecurityUtils {
     public static boolean matchesPassword(String rawPassword, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.matches(rawPassword, password);
+    }
+
+    public static LoginUser getLoginUser() {
+        try {
+            return (LoginUser) getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            throw new ServiceException("Get User Information Exception", HttpStatus.UNAUTHORIZED);
+        }
+
     }
 }
