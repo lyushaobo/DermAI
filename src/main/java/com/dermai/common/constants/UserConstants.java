@@ -22,5 +22,28 @@ public class UserConstants {
      * max length of username
      */
     public static final int USERNAME_MAX_LENGTH = 20;
-
+    /**
+     * Type: menu
+     */
+    public static final String TYPE_MENU = "C";
+    /**
+     * No Frame Const
+     */
+    public static final String NO_FRAME = "1";
+    /**
+     * type: direction
+     */
+    public static final String TYPE_DIR = "M";
+    /**
+     * layout component
+     */
+    public static final String LAYOUT = "Layout";
+    /**
+     * inner link component
+     */
+    public static final String INNER_LINK = "InnerLink";
+    /**
+     * parent view component
+     */
+    public static final String PARENT_VIEW = "ParentView";
 }

@@ -23,4 +23,7 @@ public class Constants {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String[] JSON_WHITELIST_STR
             = { "org.springframework", "com.dermai" };
+    public static final String HTTP = "http://";
+    public static final String HTTPS = "https://";
+    public static final String WWW = "www.";
 }

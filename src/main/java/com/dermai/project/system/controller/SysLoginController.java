@@ -3,11 +3,12 @@ package com.dermai.project.system.controller;
 import com.dermai.common.Utils.SecurityUtils;
 import com.dermai.common.constants.Constants;
 import com.dermai.framework.security.LoginBody;
-//import com.dermai.framework.security.service.SysLoginService;
 import com.dermai.framework.security.service.SysLoginService;
 import com.dermai.framework.security.service.SysPermissionService;
 import com.dermai.framework.web.domain.AjaxResult;
+import com.dermai.project.system.domain.SysMenu;
 import com.dermai.project.system.domain.SysUser;
+import com.dermai.project.system.service.ISysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -30,6 +32,9 @@ public class SysLoginController {
 
     @Autowired
     private SysPermissionService permissionService;
+
+    @Autowired
+    private ISysMenuService menuService;
 
     @ApiOperation("login request")
     @PostMapping("/login")
@@ -56,5 +61,18 @@ public class SysLoginController {
         ajax.put("roles", roles);
         ajax.put("permissions", permissions);
         return ajax;
+    }
+
+    /**
+     * Get Routers
+     *
+     * @return Router Info
+     */
+    @GetMapping("getRouters")
+    public AjaxResult getRouters() {
+        Long userId = SecurityUtils.getUserId();
+        // get parent0: children, parent1: children... list
+        List<SysMenu> menus = menuService.selectMenuTreeByUserId(userId);
+         return AjaxResult.success(menuService.buildMenus(menus));
     }
 }

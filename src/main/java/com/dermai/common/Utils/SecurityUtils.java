@@ -45,4 +45,26 @@ public class SecurityUtils {
             throw new ServiceException("Get User Information Exception", HttpStatus.UNAUTHORIZED);
         }
     }
+
+    /**
+     * Get Login user id
+     *
+     * @return user id
+     */
+    public static Long getUserId() {
+        try {
+            return getLoginUser().getUserId();
+        } catch (Exception e) {
+            throw new ServiceException("Get User Id Exception", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    /**
+     * Admin userId = 1L
+     * @param userId user id
+     * @return is admin
+     */
+    public static boolean isAdmin(Long userId) {
+        return userId != null && userId == 1L;
+    }
 }
