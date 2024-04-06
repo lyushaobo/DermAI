@@ -8,6 +8,7 @@ import com.dermai.framework.web.domain.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Shaobo
  */
 @RestController
+@RequestMapping("/common")
 public class CommonController {
 
     @Autowired
@@ -25,9 +27,9 @@ public class CommonController {
     @PostMapping("/upload")
     public AjaxResult uploadFile(MultipartFile file) throws Exception {
         try {
-            // 上传文件路径
+            // get upload path
             String filePath = DermAIConfiguration.getUploadPath();
-            // 上传并返回新文件名称
+            // upload file and get file name
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfiguration.getUrl() + fileName;
             AjaxResult ajax = AjaxResult.success();

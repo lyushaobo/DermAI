@@ -1,5 +1,6 @@
 package com.dermai.framework.config;
 
+import com.dermai.common.constants.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -46,6 +47,9 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**")
+                .addResourceLocations("file:" + DermAIConfiguration.getProfile() + "/");
+
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }

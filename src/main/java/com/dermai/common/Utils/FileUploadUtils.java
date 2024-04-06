@@ -72,7 +72,6 @@ public class FileUploadUtils {
     }
 
     public static final String getPathFileName(String uploadDir, String fileName) throws IOException {
-        System.out.println(DermAIConfiguration.getUploadPath());
         int dirLastIndex = DermAIConfiguration.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
         return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
@@ -90,7 +89,7 @@ public class FileUploadUtils {
     }
 
     public static final String extractFilename(MultipartFile file) {
-        // 2024/04/06/单寸证件照_20240406170607A001.jpg
+        // 2024/04/06/name_snowflake.jpg
         String datePath = DateUtil.format(LocalDateTime.now(), "yyyy/MM/dd");
         String filePrefix = FileUtil.getPrefix(file.getOriginalFilename());
         return StrUtil.format("{}/{}_{}.{}", datePath,
