@@ -1,3 +1,8 @@
+dermai:
+  profile: C:/Users/87073/Desktop/Code/DermAI/uploadPath
+  maxFileSize: 5242880
+  workerId: 1
+
 server:
   port: 8080
 

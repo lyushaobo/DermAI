@@ -146,7 +146,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.dermai.DermAiApplication</mainClass>
-                    <skip>false</skip>
+                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
