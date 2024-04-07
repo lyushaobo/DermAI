@@ -8,6 +8,7 @@ import com.github.pagehelper.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ public class SysUserController extends BaseController {
 
     @ApiOperation("get user list")
     @GetMapping("/list")
+    @PreAuthorize("@ss.hasPermi('system:user:list')")
     public AjaxResult list(SysUser user) {
         startPage();
         Page<SysUser> pageResult = userService.selectUserList(user);

@@ -27,4 +27,5 @@ public class Constants {
     public static final String HTTPS = "https://";
     public static final String WWW = "www.";
     public static final String RESOURCE_PREFIX = "/profile";
+    public static final String ALL_PERMISSION = "*:*:*";
 }
