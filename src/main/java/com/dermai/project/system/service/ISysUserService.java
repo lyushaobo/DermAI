@@ -19,4 +19,14 @@ public interface ISysUserService {
     List<SysUser> selectUserList(SysUser user);
 
     SysUser selectUserById(Long userId);
+
+    void checkUserAllowed(SysUser user);
+
+    boolean checkUserNameUnique(SysUser user);
+
+    boolean checkPhoneUnique(SysUser user);
+
+    boolean checkEmailUnique(SysUser user);
+
+    int updateUser(SysUser user);
 }

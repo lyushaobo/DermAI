@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.dermai.common.Utils.DateUtils;
 import com.dermai.common.Utils.ServletUtils;
 import com.dermai.common.core.text.Convert;
+import com.dermai.framework.web.domain.AjaxResult;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -52,6 +53,10 @@ public class BaseController {
         }
         PageHelper.startPage(pageNum, pageSize, orderBy).setReasonable(reasonable);
 
+    }
+
+    public AjaxResult error(String message) {
+        return AjaxResult.error(message);
     }
 
     private String createOrderBy(String orderByColumn, String isAsc) {

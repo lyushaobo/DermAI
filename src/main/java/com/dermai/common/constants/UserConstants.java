@@ -46,4 +46,6 @@ public class UserConstants {
      * parent view component
      */
     public static final String PARENT_VIEW = "ParentView";
+    public static final boolean NOT_UNIQUE = false;
+    public static final boolean UNIQUE = true;
 }

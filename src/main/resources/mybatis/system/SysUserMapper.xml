@@ -99,6 +99,17 @@
         <include refid="selectUserVo"/>
         where u.user_id = #{userId}
     </select>
+    <select id="checkUserNameUnique" parameterType="String" resultMap="SysUserResult">
+        select user_id, user_name from sys_user where user_name = #{userName} and del_flag = '0' limit 1
+    </select>
+
+    <select id="checkPhoneUnique" parameterType="String" resultMap="SysUserResult">
+        select user_id, phonenumber from sys_user where phonenumber = #{phonenumber} and del_flag = '0' limit 1
+    </select>
+
+    <select id="checkEmailUnique" parameterType="String" resultMap="SysUserResult">
+        select user_id, email from sys_user where email = #{email} and del_flag = '0' limit 1
+    </select>
 
     <sql id="selectUserVo">
         select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,

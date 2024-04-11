@@ -13,10 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.List;
@@ -62,5 +59,30 @@ public class SysUserController extends BaseController {
             ajaxResult.put("roleIds", user.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.toList()));
         }
         return ajaxResult;
+    }
+
+    @ApiOperation("Update user info")
+    @PutMapping
+    @PreAuthorize("@ss.hasPermi('system:user:edit')")
+    public AjaxResult edit(@RequestBody SysUser user) {
+        userService.checkUserAllowed(user);
+        if (!userService.checkUserNameUnique(user)) {
+            return error("Edit user'" + user.getUserName() + "'failed, username already exists");
+        }
+        else if (user.getPhonenumber() != null && !userService.checkPhoneUnique(user)) {
+            return error("Edit user'" + user.getUserName() + "'failed, phonenumber already exists");
+        }
+        else if (user.getEmail() != null && !userService.checkEmailUnique(user)) {
+            return error("Edit user'" + user.getUserName() + "'failed, email already exists");
+        }
+        user.setUpdateBy(user.getUserName());
+
+        int rows = userService.updateUser(user);
+
+        if (rows == 0) {
+            return AjaxResult.error();
+        }
+
+        return AjaxResult.success();
     }
 }

@@ -16,4 +16,10 @@ public interface SysUserMapper {
     Page<SysUser> selectUserList(SysUser user);
 
     SysUser selectUserById(Long userId);
+
+    SysUser checkUserNameUnique(String userName);
+
+    SysUser checkPhoneUnique(String phonenumber);
+
+    SysUser checkEmailUnique(String email);
 }
