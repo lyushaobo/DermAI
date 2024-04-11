@@ -1,5 +1,6 @@
 package com.dermai.project.system.service;
 
+import com.dermai.framework.aspectj.annotation.DataScope;
 import com.dermai.project.system.domain.SysRole;
 import com.dermai.project.system.mapper.SysRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,15 @@ public class SysRoleServiceImpl implements ISysRoleService {
             }
         }
         return permsSet;
+    }
+
+    @Override
+    public List<SysRole> selectRoleAll() {
+        return selectRoleList(new SysRole());
+    }
+
+    @Override
+    public List<SysRole> selectRoleList(SysRole role) {
+        return roleMapper.selectRoleList(role);
     }
 }

@@ -14,4 +14,6 @@ public interface SysUserMapper {
     SysUser selectUserByUserName(String userName);
 
     Page<SysUser> selectUserList(SysUser user);
+
+    SysUser selectUserById(Long userId);
 }

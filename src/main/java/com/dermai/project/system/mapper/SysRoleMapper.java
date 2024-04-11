@@ -11,4 +11,6 @@ import java.util.List;
 @Mapper
 public interface SysRoleMapper {
     List<SysRole> selectRolePermissionByUserId(Long userId);
+
+    List<SysRole> selectRoleList(SysRole role);
 }

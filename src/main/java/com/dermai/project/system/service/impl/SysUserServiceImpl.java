@@ -7,6 +7,8 @@ import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Shaobo
  */
@@ -25,7 +27,12 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     @Override
-    public Page<SysUser> selectUserList(SysUser user) {
+    public List<SysUser> selectUserList(SysUser user) {
         return userMapper.selectUserList(user);
+    }
+
+    @Override
+    public SysUser selectUserById(Long userId) {
+        return userMapper.selectUserById(userId);
     }
 }

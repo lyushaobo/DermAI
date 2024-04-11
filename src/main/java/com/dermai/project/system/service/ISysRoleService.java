@@ -1,5 +1,8 @@
 package com.dermai.project.system.service;
 
+import com.dermai.project.system.domain.SysRole;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -7,4 +10,8 @@ import java.util.Set;
  */
 public interface ISysRoleService {
     Set<String> selectRolePermissionByUserId(Long userId);
+
+    List<SysRole> selectRoleAll();
+
+    List<SysRole> selectRoleList(SysRole role);
 }
