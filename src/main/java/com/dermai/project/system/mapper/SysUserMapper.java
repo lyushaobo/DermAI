@@ -22,4 +22,11 @@ public interface SysUserMapper {
     SysUser checkPhoneUnique(String phonenumber);
 
     SysUser checkEmailUnique(String email);
+
+    /**
+     * save new user
+     * @param user new user
+     * @return number of rows affected
+     */
+    int insertUser(SysUser user);
 }

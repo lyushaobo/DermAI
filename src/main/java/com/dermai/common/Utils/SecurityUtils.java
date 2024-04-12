@@ -67,4 +67,9 @@ public class SecurityUtils {
     public static boolean isAdmin(Long userId) {
         return userId != null && userId == 1L;
     }
+
+    public static String encryptPassword(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(password);
+    }
 }

@@ -1,5 +1,6 @@
 package com.dermai.project.system.controller;
 
+import com.dermai.common.Utils.SecurityUtils;
 import com.dermai.framework.web.controller.BaseController;
 import com.dermai.framework.web.domain.AjaxResult;
 import com.dermai.project.system.domain.SysRole;
@@ -13,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
@@ -47,9 +49,9 @@ public class SysUserController extends BaseController {
     }
 
     @ApiOperation("Get user info by Id")
-    @GetMapping("/{userId}")
+    @GetMapping(value = {"/{userId}", "/"})
     @PreAuthorize("@ss.hasPermi('system:user:query')")
-    public AjaxResult getInfo(@PathVariable Long userId) {
+    public AjaxResult getInfo(@PathVariable(value = "userId", required = false) Long userId) {
         AjaxResult ajaxResult = AjaxResult.success();
         List<SysRole> roles = roleService.selectRoleAll();
         ajaxResult.put("roles", SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
@@ -85,4 +87,28 @@ public class SysUserController extends BaseController {
 
         return AjaxResult.success();
     }
+
+    @PreAuthorize("@ss.hasPermi('system:user:add')")
+    @ApiOperation("add new user")
+    @PostMapping
+    public AjaxResult add(@RequestBody SysUser user) {
+        userService.checkUserAllowed(user);
+        if (!userService.checkUserNameUnique(user)) {
+            return error("Edit user'" + user.getUserName() + "'failed, username already exists");
+        }
+        else if (user.getPhonenumber() != null && !userService.checkPhoneUnique(user)) {
+            return error("Edit user'" + user.getUserName() + "'failed, phonenumber already exists");
+        }
+        else if (user.getEmail() != null && !userService.checkEmailUnique(user)) {
+            return error("Edit user'" + user.getUserName() + "'failed, email already exists");
+        }
+        user.setCreateBy(SecurityUtils.getLoginUser().getUsername());
+        user.setPassword(SecurityUtils.encryptPassword(user.getPassword()));
+        int rows = userService.insertUser(user);
+        if (rows == 0) {
+            return AjaxResult.error();
+        }
+        return AjaxResult.success();
+    }
+
 }

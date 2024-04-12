@@ -29,4 +29,11 @@ public interface ISysUserService {
     boolean checkEmailUnique(SysUser user);
 
     int updateUser(SysUser user);
+
+    /**
+     * add new user
+     * @param user new user
+     * @return Number of rows affected
+     */
+    int insertUser(SysUser user);
 }

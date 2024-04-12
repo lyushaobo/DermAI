@@ -94,6 +94,19 @@ public class SysUserServiceImpl implements ISysUserService {
         return userMapper.updateUser(user);
     }
 
+    /**
+     * add new user
+     * @param user new user
+     * @return number of rows affected
+     */
+    @Override
+    @Transactional
+    public int insertUser(SysUser user) {
+        int rows = userMapper.insertUser(user);
+        insertUserRole(user);
+        return rows;
+    }
+
     public void insertUserRole(SysUser user) {
         this.insertUserRole(user.getUserId(), user.getRoleIds());
     }
