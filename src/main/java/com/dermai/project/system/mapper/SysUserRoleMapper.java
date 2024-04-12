@@ -13,4 +13,6 @@ public interface SysUserRoleMapper {
     int batchUserRole(List<SysUserRole> list);
 
     void deleteUserRoleByUserId(Long userId);
+
+    void deleteUserRole(Long[] userIds);
 }

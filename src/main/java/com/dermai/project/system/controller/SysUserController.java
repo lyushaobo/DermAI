@@ -1,5 +1,6 @@
 package com.dermai.project.system.controller;
 
+import cn.hutool.core.util.ArrayUtil;
 import com.dermai.common.Utils.SecurityUtils;
 import com.dermai.framework.web.controller.BaseController;
 import com.dermai.framework.web.domain.AjaxResult;
@@ -12,6 +13,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -108,6 +110,36 @@ public class SysUserController extends BaseController {
         if (rows == 0) {
             return AjaxResult.error();
         }
+        return AjaxResult.success();
+    }
+
+    @ApiOperation("delete user by userIds")
+    @DeleteMapping("/{userIds}")
+    @PreAuthorize("@ss.hasPermi('system:user:remove')")
+    public AjaxResult remove(@PathVariable Long[] userIds) {
+        if (ArrayUtil.contains(userIds, SecurityUtils.getLoginUser().getUserId())) {
+            return AjaxResult.error("can not delete current user");
+        }
+        int rows = userService.deleteUserByIds(userIds);
+        if (rows == 0) {
+            return AjaxResult.error();
+        }
+        return AjaxResult.success();
+    }
+
+    @PreAuthorize("@ss.hasPermi('system:user:resetPwd')")
+    @PutMapping("/resetPwd")
+    public AjaxResult resetPwd(@RequestBody SysUser user) {
+        userService.checkUserAllowed(user);
+        user.setPassword(SecurityUtils.encryptPassword(user.getPassword()));
+        user.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
+
+        int rows = userService.resetPwd(user);
+
+        if (rows == 0) {
+            return AjaxResult.error();
+        }
+
         return AjaxResult.success();
     }
 

@@ -97,6 +97,13 @@
         </set>
         where user_id = #{userId}
     </update>
+    <delete id="deleteUserByIds" parameterType="Long">
+        update sys_user set del_flag = '2' where user_id in
+        <foreach collection="array" item="userId" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+
     <select id="selectUserByUserName" resultMap="SysUserResult">
         <include refid="selectUserVo"/>
         where u.user_name = #{userName} and u.del_flag = '0'

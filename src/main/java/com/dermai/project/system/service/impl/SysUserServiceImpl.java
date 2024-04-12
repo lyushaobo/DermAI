@@ -107,6 +107,21 @@ public class SysUserServiceImpl implements ISysUserService {
         return rows;
     }
 
+    @Override
+    @Transactional
+    public int deleteUserByIds(Long[] userIds) {
+        for (Long userId : userIds) {
+            checkUserAllowed(new SysUser(userId));
+        }
+        userRoleMapper.deleteUserRole(userIds);
+        return userMapper.deleteUserByIds(userIds);
+    }
+
+    @Override
+    public int resetPwd(SysUser user) {
+        return userMapper.updateUser(user);
+    }
+
     public void insertUserRole(SysUser user) {
         this.insertUserRole(user.getUserId(), user.getRoleIds());
     }

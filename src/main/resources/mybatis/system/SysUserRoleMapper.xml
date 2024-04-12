@@ -10,4 +10,10 @@
     <delete id="deleteUserRoleByUserId">
         delete from sys_user_role where user_id = #{userId}
     </delete>
+    <delete id="deleteUserRole" parameterType="Long">
+        delete from sys_user_role where user_id in
+        <foreach collection="array" item="userId" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
 </mapper>

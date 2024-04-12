@@ -36,4 +36,13 @@ public interface ISysUserService {
      * @return Number of rows affected
      */
     int insertUser(SysUser user);
+
+    /**
+     * delete user by ids
+     * @param userIds user ids array
+     * @return number of rows affected
+     */
+    int deleteUserByIds(Long[] userIds);
+
+    int resetPwd(SysUser user);
 }

@@ -29,4 +29,6 @@ public interface SysUserMapper {
      * @return number of rows affected
      */
     int insertUser(SysUser user);
+
+    int deleteUserByIds(Long[] userIds);
 }
