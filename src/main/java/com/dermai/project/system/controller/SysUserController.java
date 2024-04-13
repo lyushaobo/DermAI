@@ -79,7 +79,7 @@ public class SysUserController extends BaseController {
         else if (user.getEmail() != null && !userService.checkEmailUnique(user)) {
             return error("Edit user'" + user.getUserName() + "'failed, email already exists");
         }
-        user.setUpdateBy(user.getUserName());
+        user.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
 
         int rows = userService.updateUser(user);
 

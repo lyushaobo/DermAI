@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dermai.project.client.mapper.CliDiagnosisMapper">
+
+    <sql id="selectSysQueryHistoryVo">
+        select diagnosis_id, user_id, diagnosis_image, cli_description, dermai_result, dermatologist_checked, dermatologist_diagnosis, create_time, update_by, update_time from cli_diagnosis
+    </sql>
+    <select id="selectDiagnosisList" resultType="com.dermai.project.client.domain.CliDiagnosis">
+        <include refid="selectSysQueryHistoryVo"/>
+        <where>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="userName != null  and userName != ''"> and user_name = #{userName}</if>
+            <if test="dermatologistChecked != null "> and dermatologist_checked = #{dermatologistChecked}</if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- begin time -->
+                AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- end time -->
+                AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+        </where>
+    </select>
+</mapper>

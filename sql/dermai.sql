@@ -340,3 +340,26 @@ insert into sys_role_menu values ('2', '1058');
 insert into sys_role_menu values ('2', '1059');
 insert into sys_role_menu values ('2', '1060');
 
+-- ----------------------------
+-- 7、诊断表
+-- ----------------------------
+drop table if exists cli_diagnosis;
+CREATE TABLE `cli_diagnosis` (
+                                     `diagnosis_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'diagnosis id',
+                                     `user_id` bigint(20) NOT NULL COMMENT 'user id',
+                                     `user_name` varchar(30) NOT NULL COMMENT 'user name',
+                                     `diagnosis_image` varchar(300) DEFAULT '' COMMENT 'image url',
+                                     `cli_description` varchar(500) DEFAULT '' COMMENT 'disease description',
+                                     `dermai_result` varchar(50) DEFAULT '' COMMENT 'dermai_result',
+                                     `dermatologist_checked` char(1) DEFAULT '0' COMMENT 'dermatologist dignosis status, 0 not checked',
+                                     `dermatologist_diagnosis` varchar(500) DEFAULT '' COMMENT 'dermatologist diagnosis',
+                                     `create_time` datetime DEFAULT NULL COMMENT 'create time',
+                                     `update_by` varchar(64) DEFAULT '' COMMENT 'update by',
+                                     `update_time` datetime DEFAULT NULL COMMENT 'update time',
+                                     PRIMARY KEY (`diagnosis_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='client diagnosis history';
+
+INSERT INTO cli_diagnosis (diagnosis_id, user_id, user_name, diagnosis_image, cli_description, dermai_result,
+                           dermatologist_checked, dermatologist_diagnosis, create_time, update_by, update_time)
+VALUES ('1', '2', 'ry', '/profile/upload/2024/04/06/单寸证件照_20240406181157A001.jpg', '1', '1', '1', '',
+        '2024-04-06 13:36:07', '', '2024-04-06 18:14:47');
